@@ -29,4 +29,7 @@ public class DictionaryEntry {
 		return english;
 	}
 	
+	public String toString(){
+		return (tradChinese + " : " + simpleChinese + " : " + pinyin + " : " + english);
+	}
 }

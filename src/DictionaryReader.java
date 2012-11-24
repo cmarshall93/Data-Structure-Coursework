@@ -16,18 +16,18 @@ public class DictionaryReader {
 		dictFile = new File("cedict_ts_u8.csv");
 		try {
 			reader = new BufferedReader(new FileReader(dictFile));
-			readDictionary();
+			buildDictionary();
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot find dictionary file");
 		}
 	}
 
-	private void readDictionary(){
-		System.out.println("Reading dictionary file");
+	private void buildDictionary(){
+		System.out.println("Reading dictionary file and building dictionary ");
 		String line;
 		try {
 			while((line = reader.readLine()) != null){
-				String[] array = line.split("\t"); //split the line into sepearate parts based on where a 'TAB' is
+				String[] array = line.split("\t"); //split the line into separate parts based on where a 'TAB' is
 				DictionaryEntry entry = new DictionaryEntry(array);
 				dict.addTradChinese(entry.getTradChinese(), entry);
 				dict.addSimpleChinese(entry.getSimpleChinese(), entry);
@@ -36,7 +36,7 @@ public class DictionaryReader {
 			}
 		} catch (IOException e) {
 		}
-		System.out.println("Finished reading file");
+		System.out.println("Finished reading file and bulding dictionary");
 	}
 
 }
