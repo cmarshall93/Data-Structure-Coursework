@@ -29,15 +29,18 @@ public class Dictionary {
 	}
 
 	public void addEnglish(String key, DictionaryEntry entry){
-		if(englishMap.containsKey(key)){
-			ArrayList<DictionaryEntry> entryArray = englishMap.get(key);
-			entryArray.add(entry);
-			englishMap.put(key, entryArray);
-		}
-		else{
-			ArrayList<DictionaryEntry> entryArray = new ArrayList<DictionaryEntry>();
-			entryArray.add(entry);
-			englishMap.put(key, entryArray);
+		String[] keyArray = key.split("/");
+		for(int i = 0; i < keyArray.length; i++){
+			if(englishMap.containsKey(keyArray[i])){
+				ArrayList<DictionaryEntry> entryArray = englishMap.remove(keyArray[i]);
+				entryArray.add(entry);
+				englishMap.put(keyArray[i], entryArray);
+			}
+			else{
+				ArrayList<DictionaryEntry> entryArray = new ArrayList<DictionaryEntry>();
+				entryArray.add(entry);
+				englishMap.put(keyArray[i], entryArray);
+			}
 		}
 	}
 
@@ -74,7 +77,7 @@ public class Dictionary {
 		if(searchResult != null){
 			String resultString = "";
 			for(DictionaryEntry e: searchResult){
-				resultString.concat(" , " + e.toString());
+				resultString += ("\n \t" + e.toString());
 			}
 			return resultString;
 		}
