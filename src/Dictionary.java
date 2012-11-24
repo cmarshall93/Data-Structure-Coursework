@@ -6,13 +6,13 @@ public class Dictionary {
 
 	private HashMap<String, DictionaryEntry> tradChineseMap;
 	private HashMap<String, DictionaryEntry> simpChineseMap;
-	private HashMap<String, DictionaryEntry> pinyinMap;
+	private HashMap<String, ArrayList<DictionaryEntry>> pinyinMap;
 	private HashMap<String, ArrayList<DictionaryEntry>> englishMap;
 
 	public Dictionary(){
 		tradChineseMap = new HashMap<String, DictionaryEntry>();
 		simpChineseMap = new HashMap<String, DictionaryEntry>();
-		pinyinMap = new HashMap<String, DictionaryEntry>();
+		pinyinMap = new HashMap<String, ArrayList<DictionaryEntry>>();
 		englishMap = new HashMap<String, ArrayList<DictionaryEntry>>();
 	}
 
@@ -24,8 +24,18 @@ public class Dictionary {
 		simpChineseMap.put(key, entry);
 	}
 
-	public void addPinyin(String key, DictionaryEntry entry){	
-		pinyinMap.put(key, entry);
+	public void addPinyin(String key, DictionaryEntry entry){
+		String lowerKey = key.toLowerCase();
+		if(pinyinMap.containsKey(lowerKey)){
+			ArrayList<DictionaryEntry> entryArray = pinyinMap.remove(lowerKey);
+			entryArray.add(entry);
+			pinyinMap.put(lowerKey, entryArray);
+		}else{
+			ArrayList<DictionaryEntry> entryArray = new ArrayList<DictionaryEntry>();
+			entryArray.add(entry);
+			pinyinMap.put(lowerKey, entryArray);
+		}
+
 	}
 
 	public void addEnglish(String key, DictionaryEntry entry){
@@ -46,9 +56,9 @@ public class Dictionary {
 
 	public String[] search(String searchString){
 		String[] array = new String[4];
-		array[0] = searchByTradChinese(searchString);
-		array[1] = searchBySimpleChinese(searchString);
-		array[2] = searchByEnglish(searchString);
+		array[0] = "Traditional Chinese search : " + searchByTradChinese(searchString);
+		array[1] = "Simple Chinese search : " + searchBySimpleChinese(searchString);
+		array[3] = "English search : " + searchByEnglish(searchString);
 		return array;
 	}
 
