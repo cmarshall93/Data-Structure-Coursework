@@ -58,7 +58,8 @@ public class Dictionary {
 		String[] array = new String[4];
 		array[0] = "Traditional Chinese search : " + searchByTradChinese(searchString);
 		array[1] = "Simple Chinese search : " + searchBySimpleChinese(searchString);
-		array[3] = "English search : " + searchByEnglish(searchString);
+		array[2] = "PinYin search : " + searchByPinYin(searchString);
+ 		array[3] = "English search : " + searchByEnglish(searchString);
 		return array;
 	}
 
@@ -68,7 +69,7 @@ public class Dictionary {
 			return (searchResult.toString());
 		}
 		else{
-			return "Entry not found for traditional chinese";
+			return "Entry not found";
 		}
 	}
 
@@ -78,10 +79,22 @@ public class Dictionary {
 			return (searchResult.toString());
 		}
 		else{
-			return "Entry not found for simple chinese";
+			return "Entry not found";
 		}
 	}
 
+	private String searchByPinYin(String searchString){
+		ArrayList<DictionaryEntry> searchResult = pinyinMap.get(searchString);
+		if(searchResult != null){
+			String result = "";
+			for(DictionaryEntry e: searchResult){
+				result += ("\n \t " + e.toString());
+			}
+			return result;
+		}
+		return "No entries found";
+	}
+	
 	private String searchByEnglish(String searchString){
 		ArrayList<DictionaryEntry> searchResult = englishMap.get(searchString);
 		if(searchResult != null){
@@ -91,6 +104,6 @@ public class Dictionary {
 			}
 			return resultString;
 		}
-		return "No entries not found for english" ;
+		return "No entries not found" ;
 	}
 }
