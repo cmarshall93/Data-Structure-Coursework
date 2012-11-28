@@ -31,6 +31,10 @@ public class DictionaryProgram {
 			if(nextLine.equals("exit")){
 				exit = true;
 			}
+			else if(nextLine.equals("/stats")){
+				String result = dict.getStats();
+				System.out.println(result);
+			}
 			else{
 				String[] results = dict.search(nextLine);
 				for(int i = 0; i < results.length; i++){

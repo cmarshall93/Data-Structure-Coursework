@@ -62,6 +62,15 @@ public class Dictionary {
  		array[3] = "English search : " + searchByEnglish(searchString);
 		return array;
 	}
+	
+	public String getStats(){
+		String result = "Dictionary Statistics";
+		result += "\n Number of traditional chinese words : " + tradChineseMap.size();
+		result += "\n Number of simple chinese words : " + simpChineseMap.size();
+		result += "\n Number of PinYin : " + pinyinMap.size();
+		result += "\n Number of english meanings : " + englishMap.size();
+		return result;
+	}
 
 	private String searchByTradChinese(String searchString){
 		DictionaryEntry searchResult = tradChineseMap.get(searchString);
