@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 public class Dictionary {
@@ -8,12 +9,14 @@ public class Dictionary {
 	private HashMap<String, DictionaryEntry> simpChineseMap;
 	private HashMap<String, ArrayList<DictionaryEntry>> pinyinMap;
 	private HashMap<String, ArrayList<DictionaryEntry>> englishMap;
+	private HashSet<Character> prefixSet;
 
 	public Dictionary(){
 		tradChineseMap = new HashMap<String, DictionaryEntry>();
 		simpChineseMap = new HashMap<String, DictionaryEntry>();
 		pinyinMap = new HashMap<String, ArrayList<DictionaryEntry>>();
 		englishMap = new HashMap<String, ArrayList<DictionaryEntry>>();
+		prefixSet = new HashSet<Character>();
 	}
 
 	public void addTradChinese(String key, DictionaryEntry entry){
@@ -53,13 +56,18 @@ public class Dictionary {
 			}
 		}
 	}
+	
+	public void addPrefix(Character c){
+		prefixSet.add(c);
+	}
 
 	public String[] search(String searchString){
-		String[] array = new String[4];
+		String[] array = new String[5];
 		array[0] = "Traditional Chinese search : " + searchByTradChinese(searchString);
 		array[1] = "Simple Chinese search : " + searchBySimpleChinese(searchString);
 		array[2] = "PinYin search : " + searchByPinYin(searchString);
  		array[3] = "English search : " + searchByEnglish(searchString);
+ 		array[4] = "Prefix search : " + searchByPrefix(searchString);
 		return array;
 	}
 	
@@ -69,6 +77,7 @@ public class Dictionary {
 		result += "\n Number of simple chinese words : " + simpChineseMap.size();
 		result += "\n Number of PinYin : " + pinyinMap.size();
 		result += "\n Number of english meanings : " + englishMap.size();
+		result += "\n Number of prefixes : " + prefixSet.size();
 		return result;
 	}
 
@@ -114,5 +123,20 @@ public class Dictionary {
 			return resultString;
 		}
 		return "No entries not found" ;
+	}
+	
+	private String searchByPrefix(String prefix){
+		String result = null;
+		for(String s : tradChineseMap.keySet()){
+			if(s.startsWith(prefix)){
+				result += "\n \t" + tradChineseMap.get(s);
+			}
+		}
+		if(result != null){
+			return result;
+		}
+		else{
+			return "No entries found";
+		}
 	}
 }

@@ -28,7 +28,7 @@ public class DictionaryProgram {
 		boolean exit = false;
 		while(!exit){
 			String nextLine = inputScanner.nextLine(); 
-			if(nextLine.equals("exit")){
+			if(nextLine.equals("/exit")){
 				exit = true;
 			}
 			else if(nextLine.equals("/stats")){
