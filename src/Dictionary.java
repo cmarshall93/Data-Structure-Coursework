@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Models the chinese/english dictionary. Holds the word maps and handles the searching of those maps.
+ * 
+ * @author Charles Marshall - marshac3
+ *
+ */
 
 public class Dictionary {
 

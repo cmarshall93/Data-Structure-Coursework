@@ -1,4 +1,10 @@
-
+/**
+ * Represents an entry in the dictionary. Contains the traditional chinese spelling, simple chinese spelling, 
+ * pinyin and english meaning of a word.
+ * 
+ * @author Charles Marshall -  marshac3
+ *
+ */
 public class DictionaryEntry {
 
 	private String tradChinese;

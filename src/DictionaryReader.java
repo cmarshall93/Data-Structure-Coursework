@@ -4,6 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Reads the csv file and builds a Dictionary object from the entries in the file.
+ * 
+ * @author Charles Marshall - marshac3
+ *
+ */
 
 public class DictionaryReader {
 

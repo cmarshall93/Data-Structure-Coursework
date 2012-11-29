@@ -1,6 +1,11 @@
 import java.util.Date;
 import java.util.Scanner;
-
+/**
+ * Entry point into the dictionary application.
+ * 
+ * @author Charles Marshall - marshac3
+ *
+ */
 
 public class DictionaryProgram {
 
