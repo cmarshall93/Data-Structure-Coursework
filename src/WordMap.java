@@ -5,9 +5,11 @@ import java.util.HashMap;
 public class WordMap {
 
 	private HashMap<String, ArrayList<DictionaryEntry>> map;
-
-	public WordMap(){
+	private String description;
+	
+	public WordMap(String desc){
 		map = new HashMap<String, ArrayList<DictionaryEntry>>();
+		description = desc;
 	}
 
 	public void put(String key, DictionaryEntry entry){
@@ -22,6 +24,18 @@ public class WordMap {
 		}
 	}
 	
+	public String search(String searchString){
+		ArrayList<DictionaryEntry> searchResult = map.get(searchString);
+		if(searchResult != null){
+			String resultString = "";
+			for(DictionaryEntry e: searchResult){
+				resultString += ("\n \t" + e.toString());
+			}
+			return resultString;
+		}
+		return "No entries not found" ;
+	}
+	
 	public ArrayList<DictionaryEntry> get(String key){
 		return map.get(key);
 	}
@@ -30,4 +44,7 @@ public class WordMap {
 		return map.size();
 	}
 
+	public String getDesc(){
+		return description;
+	}
 }

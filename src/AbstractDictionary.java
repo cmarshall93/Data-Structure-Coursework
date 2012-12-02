@@ -15,4 +15,12 @@ public abstract class AbstractDictionary {
 		wordMaps.add(wordMap);
 	}
 	
+	protected WordMap getWordMap(int i){
+		return wordMaps.get(i);
+	}
+	
+	protected int getWordMapsSize(){
+		return wordMaps.size();
+	}
+	
 }
