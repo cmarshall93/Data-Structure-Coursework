@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 public class DictionaryProgram {
 
+	//TODO change dictionaryReader and ChineseDictionary to their abstract types.
+	
 	private static DictionaryProgram instance;
 
 	private Scanner inputScanner;
 	private DictionaryReader fileReader;
-	private Dictionary dict;
+	private ChineseDictionary dict;
 
 	public static void main(String[] args){
 		instance = new DictionaryProgram();
@@ -21,7 +23,7 @@ public class DictionaryProgram {
 
 	private DictionaryProgram(){
 		inputScanner = new Scanner(System.in);
-		dict = new Dictionary();
+		dict = new ChineseDictionary();
 		long startTime = (new Date().getTime());
 		fileReader = new DictionaryReader(dict);
 		long endTime = (new Date().getTime());

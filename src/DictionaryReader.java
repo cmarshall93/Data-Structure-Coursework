@@ -15,9 +15,9 @@ public class DictionaryReader {
 
 	private File dictFile;
 	private BufferedReader reader;
-	private Dictionary dict;
+	private ChineseDictionary dict;
 
-	public DictionaryReader(Dictionary dict){
+	public DictionaryReader(ChineseDictionary dict){
 		this.dict = dict;
 		dictFile = new File("cedict_ts_u8.csv");
 		try {
