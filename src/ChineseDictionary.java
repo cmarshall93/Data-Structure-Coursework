@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Models the chinese/english dictionary. Holds the word maps and handles the searching of those maps.
+ * Models the chinese/english dictionary.
  * 
  * @author Charles Marshall - marshac3
  *
@@ -18,10 +18,10 @@ public class ChineseDictionary extends AbstractDictionary {
 	private ArrayList<Character> prefixSet;
 
 	public ChineseDictionary(){
-		tradChineseMap = new WordMap("Traditional Chinese search :");
-		simpChineseMap = new WordMap("Simple Chinese search : ");
-		pinyinMap = new WordMap("PinYin search : ");
-		englishMap = new WordMap("English search : ");
+		tradChineseMap = new WordMap("Search by Traditional Chinese:");
+		simpChineseMap = new WordMap("Search by Simple Chinese: ");
+		pinyinMap = new WordMap("Search by PinYin: ");
+		englishMap = new WordMap("Search by English: ");
 		prefixSet = new ArrayList<Character>();
 
 		addWordMap(tradChineseMap);
