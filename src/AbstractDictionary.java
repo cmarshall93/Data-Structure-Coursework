@@ -11,6 +11,10 @@ public abstract class AbstractDictionary {
 		wordMaps = new ArrayList<WordMap>();
 	}
 	
+	public abstract String[] search(String searchString);
+	
+	public abstract String getStats();
+	
 	protected void addWordMap(WordMap wordMap){
 		wordMaps.add(wordMap);
 	}

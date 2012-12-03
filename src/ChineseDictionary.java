@@ -18,10 +18,10 @@ public class ChineseDictionary extends AbstractDictionary {
 	private ArrayList<Character> prefixSet;
 
 	public ChineseDictionary(){
-		tradChineseMap = new WordMap("Search by Traditional Chinese:");
-		simpChineseMap = new WordMap("Search by Simple Chinese: ");
-		pinyinMap = new WordMap("Search by PinYin: ");
-		englishMap = new WordMap("Search by English: ");
+		tradChineseMap = new WordMap("Traditional Chinese:");
+		simpChineseMap = new WordMap("Simple Chinese: ");
+		pinyinMap = new WordMap("PinYin: ");
+		englishMap = new WordMap("English: ");
 		prefixSet = new ArrayList<Character>();
 
 		addWordMap(tradChineseMap);
@@ -54,24 +54,23 @@ public class ChineseDictionary extends AbstractDictionary {
 		prefixSet.add(c);
 	}
 
-	public String[] search(String searchString){
+	public String getStats(){
+		String result = "Dictionary Statistics";
+		for(int i = 0; i < getWordMapsSize(); i++){
+			result += "\nNumber of " + getWordMap(i).getDesc() + " words : " + getWordMap(i).size();
+		}
+		return result;
+	}
+
+	@Override
+	public String[] search(String searchString) {
 		String[] array = new String[getWordMapsSize()];
 		for(int i = 0; i < array.length; i++){
-			array[i] = getWordMap(i).getDesc() + getWordMap(i).search(searchString);
+			array[i] = "Search by " + getWordMap(i).getDesc() + getWordMap(i).search(searchString);
 		}
 		return array;
 	}
 
-	public String getStats(){
-		String result = "Dictionary Statistics";
-		result += "\n Number of traditional chinese words : " + tradChineseMap.size();
-		result += "\n Number of simple chinese words : " + simpChineseMap.size();
-		result += "\n Number of PinYin : " + pinyinMap.size();
-		result += "\n Number of english meanings : " + englishMap.size();
-		result += "\n Number of prefixes : " + prefixSet.size();
-		return result;
-	}
-	
 	/**private String searchByPrefix(String prefix){
 		String result = null;
 		for(String s : tradChineseMap.keySet()){
