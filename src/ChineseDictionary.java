@@ -40,6 +40,9 @@ public class ChineseDictionary extends AbstractDictionary {
 
 	public void addPinyin(String key, DictionaryEntry entry){
 		String lowerKey = key.toLowerCase();
+		lowerKey = lowerKey.replace("[", "");
+		lowerKey = lowerKey.replace("]", "");
+		lowerKey.trim();
 		pinyinMap.put(lowerKey, entry);
 	}
 
