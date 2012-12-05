@@ -22,8 +22,7 @@ public class ChineseDictionary extends AbstractDictionary {
 		simpChineseMap = new WordMap("Simple Chinese: ");
 		pinyinMap = new WordMap("PinYin: ");
 		englishMap = new WordMap("English: ");
-		prefixSet = new ArrayList<Character>();
-
+		
 		addWordMap(tradChineseMap);
 		addWordMap(simpChineseMap);
 		addWordMap(pinyinMap);
@@ -50,10 +49,6 @@ public class ChineseDictionary extends AbstractDictionary {
 		}
 	}
 
-	public void addPrefix(Character c){
-		prefixSet.add(c);
-	}
-
 	public String getStats(){
 		String result = "Dictionary Statistics";
 		for(int i = 0; i < getWordMapsSize(); i++){
@@ -64,25 +59,27 @@ public class ChineseDictionary extends AbstractDictionary {
 
 	@Override
 	public String[] search(String searchString) {
-		String[] array = new String[getWordMapsSize()];
-		for(int i = 0; i < array.length; i++){
+		String[] array = new String[getWordMapsSize() + 1];
+		for(int i = 0; i < getWordMapsSize(); i++){
 			array[i] = "Search by " + getWordMap(i).getDesc() + getWordMap(i).search(searchString);
 		}
+		array[getWordMapsSize()] = "Search by prefix: " + searchByPrefix(searchString);
 		return array;
 	}
 
-	/**private String searchByPrefix(String prefix){
-		String result = null;
-		for(String s : tradChineseMap.keySet()){
+	private String searchByPrefix(String prefix){
+		String result = "";
+		for(DictionaryEntry de : tradChineseMap.getValues()){
+			String s = de.getTradChinese();
 			if(s.startsWith(prefix)){
 				result += "\n \t" + tradChineseMap.get(s);
 			}
 		}
-		if(result != null){
+		if(result != ""){
 			return result;
 		}
 		else{
 			return "No entries found";
 		}
-	}*/
+	}
 }

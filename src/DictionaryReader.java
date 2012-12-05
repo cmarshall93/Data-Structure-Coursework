@@ -19,7 +19,7 @@ public class DictionaryReader {
 
 	public DictionaryReader(ChineseDictionary dict){
 		this.dict = dict;
-		dictFile = new File("dict.csv");
+		dictFile = new File("cedict_ts_u8.csv");
 		try {
 			reader = new BufferedReader(new FileReader(dictFile));
 			buildDictionary();
@@ -39,7 +39,6 @@ public class DictionaryReader {
 				dict.addSimpleChinese(entry.getSimpleChinese(), entry);
 				dict.addPinyin(entry.getPinYin(), entry);
 				dict.addEnglish(entry.getEnglish(), entry);
-				dict.addPrefix(entry.getTradChinese().charAt(0));
 			}
 		} catch (IOException e) {
 		}

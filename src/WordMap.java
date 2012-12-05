@@ -40,6 +40,14 @@ public class WordMap {
 		return map.get(key);
 	}
 	
+	public ArrayList<DictionaryEntry> getValues(){
+		ArrayList<DictionaryEntry> values = new ArrayList<DictionaryEntry>();
+		for(ArrayList<DictionaryEntry> a: map.values()){
+			values.addAll(a);
+		}
+		return values;
+	}
+	
 	public int size(){
 		return map.size();
 	}
