@@ -22,6 +22,7 @@ public class ChineseDictionary extends AbstractDictionary {
 		simpChineseMap = new WordMap("Simple Chinese: ");
 		pinyinMap = new WordMap("PinYin: ");
 		englishMap = new WordMap("English: ");
+		prefixSet = new ArrayList<Character>();
 		
 		addWordMap(tradChineseMap);
 		addWordMap(simpChineseMap);
@@ -48,12 +49,17 @@ public class ChineseDictionary extends AbstractDictionary {
 			englishMap.put(keyArray[i], entry);
 		}
 	}
+	
+	public void addPrefix(char prefix) {
+		prefixSet.add(prefix);
+	}
 
 	public String getStats(){
 		String result = "Dictionary Statistics";
 		for(int i = 0; i < getWordMapsSize(); i++){
 			result += "\nNumber of " + getWordMap(i).getDesc() + " words : " + getWordMap(i).size();
 		}
+		result += "\nNumer of prefixs : " + prefixSet.size();
 		return result;
 	}
 

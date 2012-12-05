@@ -14,8 +14,8 @@ public class DictionaryProgram {
 	private static DictionaryProgram instance;
 
 	private Scanner inputScanner;
-	private DictionaryReader fileReader;
-	private ChineseDictionary dict;
+	private AbstractDictionaryReader fileReader;
+	private AbstractDictionary dict;
 
 	public static void main(String[] args){
 		instance = new DictionaryProgram();
@@ -25,7 +25,10 @@ public class DictionaryProgram {
 		inputScanner = new Scanner(System.in);
 		dict = new ChineseDictionary();
 		long startTime = (new Date().getTime());
-		fileReader = new DictionaryReader(dict);
+		
+		fileReader = new ChineseDictionaryReader();
+		
+		dict = fileReader.buildDictionary();
 		long endTime = (new Date().getTime());
 		long time = endTime - startTime;
 		System.out.println("Time taken to build dictionary: " + time/1000 + " seconds");
