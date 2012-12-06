@@ -39,7 +39,6 @@ public class ChineseDictionaryReader implements AbstractDictionaryReader {
 					dict.addSimpleChinese(entry.getSimpleChinese(), entry);
 					dict.addPinyin(entry.getPinYin(), entry);
 					dict.addEnglish(entry.getEnglish(), entry);
-					dict.addPrefix(entry.getTradChinese().charAt(0));
 				}
 				else{
 					System.out.println("Entry on line " + i + " does not have four parts, skipping entry.");
