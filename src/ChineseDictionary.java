@@ -67,13 +67,33 @@ public class ChineseDictionary extends AbstractDictionary {
 	}
 
 	@Override
-	public String[] search(String searchString) {
-		String[] array = new String[getWordMapsSize() + 1];
+	public String search(String dictToSearch, String searchString) {
+		/*String[] array = new String[getWordMapsSize() + 1];
 		for(int i = 0; i < getWordMapsSize(); i++){
 			array[i] = "Search by " + getWordMap(i).getDesc() + getWordMap(i).search(searchString);
 		}
 		array[getWordMapsSize()] = "Search by prefix: " + searchByPrefix(searchString);
-		return array;
+		return array;*/
+		String result = "";
+		if(dictToSearch.equals("/trad")){
+			result = tradChineseMap.search(searchString);
+		}
+		else if(dictToSearch.equals("/simp")){
+			result = simpChineseMap.search(searchString);
+		}
+		else if(dictToSearch.equals("/pin")){
+			result = pinyinMap.search(searchString);
+		}
+		else if(dictToSearch.equals("/eng")){
+			result = englishMap.search(searchString);
+		}
+		else if(dictToSearch.equals("/pre")){
+			result = searchByPrefix(searchString);
+		}
+		else{
+			result = "Command not recognised";
+		}
+		return result;
 	}
 
 	private String searchByPrefix(String prefix){
@@ -90,5 +110,15 @@ public class ChineseDictionary extends AbstractDictionary {
 		else{
 			return "No entries found";
 		}
+	}
+	
+	public String getSearchCommands(){
+		String s = "/trad : search traditional chinese";
+		s += "\n/simp : search simple chinese";
+		s += "\n/pin :  search pinyin";
+		s += "\n/eng : search english defeniton.";
+		s += "\n/pre : search prefix";
+		s += "\nFor example : \"/eng sorrow\" will search for english definitions matching sorrow";
+		return s;
 	}
 }

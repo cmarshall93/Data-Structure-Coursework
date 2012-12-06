@@ -11,7 +11,9 @@ public abstract class AbstractDictionary {
 		wordMaps = new ArrayList<WordMap>();
 	}
 	
-	public abstract String[] search(String searchString);
+	public abstract String search(String dictToSearch, String searchString);
+	
+	public abstract String getSearchCommands();
 	
 	public abstract String getStats();
 	
