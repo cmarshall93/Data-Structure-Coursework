@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Reads the csv file and builds a Dictionary object from the entries in the file.
+ * Reads the csv file and builds a ChineseDictionary object from the entries in the file.
  * 
  * @author Charles Marshall - marshac3
  *
@@ -16,8 +16,11 @@ public class ChineseDictionaryReader implements AbstractDictionaryReader {
 	private File dictFile;
 	private BufferedReader reader;
 
+	/**
+	 * Constructor
+	 */
 	public ChineseDictionaryReader(){
-		dictFile = new File("cedict_ts_u8.csv");
+		dictFile = new File("cedict_ts_u8.csv"); //Chinese/English dictionary file.
 		try {
 			reader = new BufferedReader(new FileReader(dictFile));
 		} catch (FileNotFoundException e) {
@@ -25,6 +28,10 @@ public class ChineseDictionaryReader implements AbstractDictionaryReader {
 		}
 	}
 
+	/**
+	 * Creates a new ChineseDictioanry object and adds entries to the dictionary as it reads through the dictionary file.
+	 * If entry does not have enough parts(i.e english definitions are missing) then that entry is skipped.
+	 */
 	public AbstractDictionary buildDictionary() {
 		ChineseDictionary dict = new ChineseDictionary();
 		System.out.println("Reading dictionary file and building dictionary ");

@@ -8,22 +8,29 @@ import java.util.Scanner;
  */
 
 public class DictionaryProgram {
-
-	//TODO change dictionaryReader and ChineseDictionary to their abstract types.
-
+	
 	private static DictionaryProgram instance;
 
 	private Scanner inputScanner;
 	private AbstractDictionaryReader fileReader;
 	private AbstractDictionary dict;
 
+	/**
+	 * Main method of the application.
+	 * 
+	 * @param args ingnored
+	 */
 	public static void main(String[] args){
 		instance = new DictionaryProgram();
 	}
 
+	/**
+	 * Creates a new DictionaryReader object and builds a new dictionary.
+	 * Reads user input and outputs result until '/exit' is input.
+	 * 
+	 */
 	private DictionaryProgram(){
 		inputScanner = new Scanner(System.in);
-		dict = new ChineseDictionary();
 		long startTime = (new Date().getTime());
 
 		fileReader = new ChineseDictionaryReader();
@@ -33,6 +40,7 @@ public class DictionaryProgram {
 		long time = endTime - startTime;
 		System.out.println("Time taken to build dictionary: " + time/1000 + " seconds");
 		System.out.println("Welcome to the Chinese/English dictionary application!");
+		System.out.println("Type /help for help.");
 		System.out.println();
 
 		boolean exit = false;
