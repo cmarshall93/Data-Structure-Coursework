@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Models the chinese/english dictionary.
@@ -88,6 +89,22 @@ public class ChineseDictionary extends AbstractDictionary {
 		}
 		result += "\nNumer of prefixs : " + prefixes;
 		return result;
+	}
+	
+	public void countPrefixes(){
+		ArrayList<String> keySet = tradChineseMap.getKeys();
+		ArrayList<String> keySetClone = keySet;
+		ArrayList<String> prefixesArray = new ArrayList<String>();
+		System.out.println("counting");
+		for(String s: keySet){
+			for(String sClone : keySetClone){
+				if(sClone.startsWith(s) && !prefixesArray.contains(s)){
+					prefixesArray.add(s);
+					prefixes++;
+					System.out.println(prefixes);
+				}
+			}
+		}
 	}
 
 	@Override

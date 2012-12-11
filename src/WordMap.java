@@ -81,6 +81,19 @@ public class WordMap {
 	}
 	
 	/**
+	 * Returns all of the keys in the wordMap.
+	 * 
+	 * @return all the keys in the word map
+	 */
+	public ArrayList<String> getKeys(){
+		ArrayList<String> keys = new ArrayList<String>();
+		for(String s: map.keySet()){
+			keys.add(s);
+		}
+		return keys;
+	}
+	
+	/**
 	 * Returns the number of keys in the wordMap. 
 	 * 
 	 * @return size of the hashmap used to store the entries.
