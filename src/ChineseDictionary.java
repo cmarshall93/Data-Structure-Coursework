@@ -93,15 +93,18 @@ public class ChineseDictionary extends AbstractDictionary {
 	
 	public void countPrefixes(){
 		ArrayList<String> keySet = tradChineseMap.getKeys();
-		ArrayList<String> keySetClone = keySet;
-		ArrayList<String> prefixesArray = new ArrayList<String>();
+		HashSet<String> prefixArray = new HashSet<String>();
 		System.out.println("counting");
 		for(String s: keySet){
-			for(String sClone : keySetClone){
-				if(sClone.startsWith(s) && !prefixesArray.contains(s)){
-					prefixesArray.add(s);
+			boolean finished = false;
+			for(int i = 0;i < keySet.size() || !finished; i++){
+				String sClone = keySet.get(i);
+				if(sClone.startsWith(s) && !prefixArray.contains(s)){
 					prefixes++;
+					prefixArray.add(s);
 					System.out.println(prefixes);
+				}else{
+					finished = true;
 				}
 			}
 		}
