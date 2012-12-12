@@ -95,13 +95,14 @@ public class ChineseDictionary extends AbstractDictionary {
 		ArrayList<String> keySet = tradChineseMap.getKeys();
 		HashSet<String> prefixArray = new HashSet<String>();
 		System.out.println("counting");
-		for(String s: keySet){
+		for(int i = 0; i < keySet.size(); i++){
 			boolean finished = false;
-			for(int i = 0;i < keySet.size() || !finished; i++){
-				String sClone = keySet.get(i);
-				if(sClone.startsWith(s) && !prefixArray.contains(s)){
+			String pre = keySet.get(i);
+			for(int n = i;n < keySet.size() && !finished; n++){
+				String word = keySet.get(n);
+				if(word.startsWith(pre) && !prefixArray.contains(pre)){
 					prefixes++;
-					prefixArray.add(s);
+					prefixArray.add(pre);
 					System.out.println(prefixes);
 				}else{
 					finished = true;

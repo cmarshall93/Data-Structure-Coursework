@@ -65,7 +65,7 @@ public class DictionaryProgram {
 					System.out.println("Enter a command, type /help for a list");
 				}
 				else if(searchParams.length == 1){
-					System.out.println("You didn't type a word to search");
+					System.out.println("You didn't type a search string");
 				}
 				else if(searchParams.length == 2){
 					String result = dict.search(searchParams[0], searchParams[1]);
@@ -74,9 +74,9 @@ public class DictionaryProgram {
 				else{
 					String search = "";
 					for(int i = 1; i < searchParams.length; i++){
-						search += searchParams[i] + " ";
+						search += " " + searchParams[i];
 					}
-					search.trim();
+					search = search.trim();
 					String result = dict.search(searchParams[0], search);
 					System.out.println(result);
 				}
