@@ -67,11 +67,16 @@ public class DictionaryProgram {
 				else if(searchParams.length == 1){
 					System.out.println("You didn't type a word to search");
 				}
-				else if(searchParams.length >= 2){
+				else if(searchParams.length == 2){
+					String result = dict.search(searchParams[0], searchParams[1]);
+					System.out.println(result);
+				}
+				else{
 					String search = "";
 					for(int i = 1; i < searchParams.length; i++){
-						search += " " + searchParams[i];
+						search += searchParams[i] + " ";
 					}
+					search.trim();
 					String result = dict.search(searchParams[0], search);
 					System.out.println(result);
 				}
