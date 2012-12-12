@@ -76,6 +76,9 @@ public class ChineseDictionary extends AbstractDictionary {
 	 * @param entry		dictionaryEntry associated with the key.
 	 */
 	public void addEnglish(String key, DictionaryEntry entry){
+		/*
+		 * For each word in the english section of the entry, create a new string.
+		 */
 		String[] keyArray = key.split("/");
 		for(int i = 0; i < keyArray.length; i++){
 			englishMap.put(keyArray[i], entry);
@@ -88,24 +91,38 @@ public class ChineseDictionary extends AbstractDictionary {
 		for(int i = 0; i < getWordMapsSize(); i++){
 			result += "\nNumber of " + getWordMap(i).getDesc() + " words : " + getWordMap(i).size();
 		}
-		result += "\nNumer of prefixs : " + prefixes;
+		result += "\nNumer of prefixes : " + prefixes;
 		return result;
 	}
-	
+/**
+	 * Counts the number of traditional Chinese prefixes. This is method is broken and is only 
+	 * included to provide an insight of how I was going to implement this requirement.
+	 */
 	public void countPrefixes(){
-		ArrayList<String> keySet = tradChineseMap.getKeys();
-		Collections.sort(keySet);
-		HashSet<String> prefixArray = new HashSet<String>();
-		System.out.println("counting");
-		for(int i = 0; i < keySet.size(); i++){
+		//create a new ArrayList containing all the traditional chinese keys.
+		ArrayList<String> keyList= tradChineseMap.getKeys();
+		//sort the list of keys alphabetically.
+		Collections.sort(keyList);
+		//create a temporary HashSet to keep track of all the prefixes already found
+		HashSet<String> prefixSet = new HashSet<String>();
+		/*
+		 *Go through every key. 
+		 */
+		for(int i = 0; i < keyList.size(); i++){
 			boolean finished = false;
-			String pre = keySet.get(i);
-			for(int n = i;n < keySet.size() && !finished; n++){
-				String word = keySet.get(n);
-				if(word.startsWith(pre) && !prefixArray.contains(pre)){
-					prefixes++;
-					prefixArray.add(pre);
-					System.out.println(prefixes);
+			String pre = keyList.get(i);
+			/*
+			 * Go through every element that appears after the current and check to see
+			 * if the current element is a prefix to them. A prefix can only be a prefix to 
+			 * words that appear it in the alphabet. When a word is reached that the current 
+			 * element is not a prefix of, then the secondary loop is exited.
+			 */
+			for(int n = i;n < keyList.size() && !finished; n++){
+				String word = keyList.get(n);
+				//check word starts with prefix and prefix has not already been found
+				if(word.startsWith(pre) && !prefixSet.contains(pre)){
+					prefixes++;//increase number of prefixes identified.
+					prefixSet.add(pre);
 				}
 				else{
 					finished = true;
@@ -114,6 +131,13 @@ public class ChineseDictionary extends AbstractDictionary {
 		}
 	}
 
+	/**
+	 * Search the dicionary for the given word/phrase
+	 * 
+	 * @param dictToSearch the dictionary command to choose which wordmap is being searched
+	 * @param searchString	the string that is being searched for
+	 * @return the result of the search
+	 */
 	@Override
 	public String search(String dictToSearch, String searchString) {
 		String result = "";
@@ -160,6 +184,11 @@ public class ChineseDictionary extends AbstractDictionary {
 		}
 	}
 	
+	/**
+	 * Return a list of commands related to this dictionary.
+	 * 
+	 * @return list of commands
+	 */
 	@Override
 	public String getSearchCommands(){
 		String s = "/trad : search traditional chinese";

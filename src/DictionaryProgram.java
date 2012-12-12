@@ -65,7 +65,7 @@ public class DictionaryProgram {
 					System.out.println("Enter a command, type /help for a list");
 				}
 				else if(searchParams.length == 1){
-					System.out.println("You didn't type a search string");
+					System.out.println("Input not recognised");
 				}
 				else if(searchParams.length == 2){
 					String result = dict.search(searchParams[0], searchParams[1]);
