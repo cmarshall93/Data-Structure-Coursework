@@ -67,12 +67,13 @@ public class DictionaryProgram {
 				else if(searchParams.length == 1){
 					System.out.println("You didn't type a word to search");
 				}
-				else if(searchParams.length == 2){
-					String result = dict.search(searchParams[0], searchParams[1]);
+				else if(searchParams.length >= 2){
+					String search = "";
+					for(int i = 1; i < searchParams.length; i++){
+						search += " " + searchParams[i];
+					}
+					String result = dict.search(searchParams[0], search);
 					System.out.println(result);
-				}
-				else{
-					System.out.println("You can only search one word at a time");
 				}
 			}
 		}

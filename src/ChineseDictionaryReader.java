@@ -54,7 +54,7 @@ public class ChineseDictionaryReader implements AbstractDictionaryReader {
 			}
 		} catch (IOException e) {
 		}
-		dict.countPrefixes();
+		//dict.countPrefixes();
 		System.out.println("Finished reading file and bulding dictionary");
 		return dict;
 	}
