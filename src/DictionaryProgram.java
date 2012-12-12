@@ -12,7 +12,7 @@ public class DictionaryProgram {
 	private static DictionaryProgram instance;
 
 	private Scanner inputScanner;
-	private AbstractDictionaryReader fileReader;
+	private AbstractDictionaryBuilder fileReader;
 	private AbstractDictionary dict;
 
 	/**
@@ -33,7 +33,7 @@ public class DictionaryProgram {
 		inputScanner = new Scanner(System.in);
 		long startTime = (new Date().getTime());
 
-		fileReader = new ChineseDictionaryReader();
+		fileReader = new ChineseDictionaryBuilder();
 
 		dict = fileReader.buildDictionary();
 		long endTime = (new Date().getTime());

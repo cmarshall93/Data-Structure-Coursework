@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -93,6 +94,7 @@ public class ChineseDictionary extends AbstractDictionary {
 	
 	public void countPrefixes(){
 		ArrayList<String> keySet = tradChineseMap.getKeys();
+		Collections.sort(keySet);
 		HashSet<String> prefixArray = new HashSet<String>();
 		System.out.println("counting");
 		for(int i = 0; i < keySet.size(); i++){
@@ -104,7 +106,8 @@ public class ChineseDictionary extends AbstractDictionary {
 					prefixes++;
 					prefixArray.add(pre);
 					System.out.println(prefixes);
-				}else{
+				}
+				else{
 					finished = true;
 				}
 			}
