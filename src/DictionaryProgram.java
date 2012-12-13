@@ -1,5 +1,9 @@
 import java.util.Date;
 import java.util.Scanner;
+
+import marshac3.dictionary.AbstractDictionary;
+import marshac3.dictionaryBuilding.AbstractDictionaryBuilder;
+import marshac3.dictionaryBuilding.ChineseDictionaryBuilder;
 /**
  * Entry point into the dictionary application.
  * 
@@ -44,6 +48,7 @@ public class DictionaryProgram {
 		System.out.println();
 
 		boolean exit = false;
+		//main program loop
 		while(!exit){
 			String nextLine = inputScanner.nextLine(); 
 			if(nextLine.equals("/exit")){
@@ -61,10 +66,10 @@ public class DictionaryProgram {
 			}
 			else{
 				String[] searchParams = nextLine.split(" ");
-				if(searchParams.length == 0){
+				if(searchParams.length == 0){//nothing is typed
 					System.out.println("Enter a command, type /help for a list");
 				}
-				else if(searchParams.length == 1){
+				else if(searchParams.length == 1){//something which isn't a command is typed
 					System.out.println("Input not recognised");
 				}
 				else if(searchParams.length == 2){
